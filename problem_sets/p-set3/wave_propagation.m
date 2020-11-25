@@ -1,15 +1,15 @@
 % wave propagation
 
 % Grid and initial data:
-  N = 512; 
-  
+  N = 64; 
   x = cos(pi*(0:N)/N); 
   y = x';
+  % final time
   T = 1;
   dt = 6/N^2;
   [xx,yy] = meshgrid(x,y);
-  plotgap = round((1/3)/dt); 
-  dt = (1/3)/plotgap;
+  % number of iterations
+  Nit = round(T/dt)
   
   plot_bool = true;
   plot_n    = 100;
@@ -28,7 +28,7 @@
 % Time-stepping by leap frog formula:
   [ay,ax] = meshgrid([.56 .06],[.1 .55]); clf
   
-  for n = 0:3*plotgap
+  for n = 0:Nit
     t = n*dt;
     % plot if necessary
     if plot_bool && (mod(n,plot_n) == 0 )
